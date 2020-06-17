@@ -1,0 +1,40 @@
+.. _rebinning_drizzling:
+
+#############################
+How to rebin and drizzle PSFs
+#############################
+
+1. Rebinning is like applying a low-pass filter, by which the pixels within the "kernel" become averaged (or summed--but the normalization doesn't matter as the PSF becomes normalized to unity in the end). Depending on the location of kernels within the bigger PSF grid, we can have various rebinned PSFs. See 1610.08504 for the details of rebinning. #TODO: link
+
+Run
+
+.. code-block:: sh
+
+    $python tinier_tim/rebin_psf.py
+
+This script, as it is, creates 8 differently-binned images, named `non_drizzled_psf-[0-8].fits`. 
+
+#TODO: refactor script into modules
+#TODO: have the PSF loading module take in path to `test00.fits` (output of tiny tim tutorial)
+
+2. Move these rebinned PSFs into the desired working folder.
+
+.. code-block:: sh
+
+    $mkdir my_temp
+    $mv non_drizzled_psf-*.fits my_temp/
+
+#TODO: make rebin_psf output non-drizzled PSF in a specified folder
+
+3. Initialize IRAF within the working folder.
+
+.. code-block:: sh
+
+    $cd my_temp
+    $mkiraf
+
+This will output a config file `login.cl` accepted by IRAF. Check your device's information, and locate the section containing the list `tv`, `utilities`, `noao`, and `vo`. After `vo`, add `stsdas`, `analysis`, `dither` in separate lines.
+
+4. Copy over the files `header.py`, `nordri.py` into your working folder.
+
+5. Run `auto_drizzle.sh`.

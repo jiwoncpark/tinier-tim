@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tinier-tim &mdash; tinier-tim 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to simulate PSFs with Tiny Tim" href="tiny_tim_tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home" alt="Documentation Home"> tinier-tim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="tiny_tim_tutorial.html">How to simulate PSFs with Tiny Tim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rebinning_drizzling.html">How to rebin and drizzle PSFs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">tinier-tim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>tinier-tim</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="tinier-tim">
+<h1>tinier-tim<a class="headerlink" href="#tinier-tim" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://tinier-tim.readthedocs.io/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/tinier-tim/badge/?version=latest" /></a>
+<p>Simulating drizzled HST PSFs.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple" start="0">
+<li>Follow the instructions on the <a class="reference external" href="https://astroconda.readthedocs.io/en/latest/installation.html#legacy-software-stack-with-iraf">STScI-supported documentation</a> to create the <cite>iraf27</cite> <cite>conda</cite> environment and activate it. This amounts to running the following:</li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$conda</span> config --add channels http://ssb.stsci.edu/astroconda
+<span class="nv">$conda</span> create -n iraf27 <span class="nv">python</span><span class="o">=</span><span class="m">2</span>.7 iraf-all pyraf-all stsci
+<span class="nv">$source</span> activate iraf27
+</pre></div>
+</div>
+<p>When you run <cite>tiny1</cite> on terminal, you should see</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt;&gt; tiny1 paramfile <span class="o">[</span><span class="nv">major</span><span class="o">=</span>x <span class="nv">minor</span><span class="o">=</span>y <span class="nv">angle</span><span class="o">=</span>z<span class="o">]</span> <span class="o">[</span><span class="nv">jitter</span><span class="o">=</span>x<span class="o">]</span> <span class="o">[</span><span class="nv">ebmv</span><span class="o">=</span>x<span class="o">]</span> <span class="o">[</span><span class="nv">Av</span><span class="o">=</span>x<span class="o">]</span> <span class="o">[</span><span class="nv">wmag</span><span class="o">=</span>x<span class="o">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li>Clone the editable version of this repo (not available yet!).</li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$git</span> clone https://github.com/jiwoncpark/tinier-tim.git
+<span class="nv">$cd</span> tinier-tim
+<span class="nv">$pip</span> install -e . -r requirements.txt
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>(Optional) To run the notebooks, add the Jupyter kernel.</li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$python</span> -m ipykernel install --user --name tinier-tim --display-name <span class="s2">&quot;Python (tinier-tim)&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tutorials">
+<h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h2>
+<p>See the <a class="reference external" href="https://tinier-tim.readthedocs.io/en/latest/?badge=latest">documentation</a> for tutorials.</p>
+</div>
+<div class="section" id="feedback">
+<h2>Feedback<a class="headerlink" href="#feedback" title="Permalink to this headline">¶</a></h2>
+<p>Suggestions are always welcome! There is quite a bit of omission in the tutorials owing to my lack of background knowledge. If you encounter issues or areas for improvement, please message &#64;jiwoncpark or <a class="reference external" href="https://github.com/jiwoncpark/tinier-tim/issues">make an issue</a>.</p>
+</div>
+<div class="section" id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">¶</a></h2>
+<p>The package heavily uses the C package <a class="reference external" href="https://www.stsci.edu/software/tinytim/">Tiny Tim</a> developed by John Krist, with additional support provided by Richard Hook and Felix Stoehr. The rebinning and drizzling code was written by Xuheng Ding (&#64;dartoon) and modularized with minor modifications by Ji Won Park (&#64;jiwoncpark). The tutorials were also written by Ji Won Park (&#64;jiwoncpark).</p>
+</div>
+<div class="section" id="welcome-to-tinier-tim-s-documentation">
+<h2>Welcome to tinier-tim’s documentation!<a class="headerlink" href="#welcome-to-tinier-tim-s-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tiny_tim_tutorial.html">How to simulate PSFs with Tiny Tim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tiny_tim_tutorial.html#step-1">Step 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiny_tim_tutorial.html#step-2">Step 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiny_tim_tutorial.html#step-3">Step 3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rebinning_drizzling.html">How to rebin and drizzle PSFs</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tiny_tim_tutorial.html" class="btn btn-neutral float-right" title="How to simulate PSFs with Tiny Tim" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Ji Won Park
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

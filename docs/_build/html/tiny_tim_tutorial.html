@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to simulate PSFs with Tiny Tim &mdash; tinier-tim 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to rebin and drizzle PSFs" href="rebinning_drizzling.html" />
+    <link rel="prev" title="tinier-tim" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> tinier-tim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to simulate PSFs with Tiny Tim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-1">Step 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2">Step 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3">Step 3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rebinning_drizzling.html">How to rebin and drizzle PSFs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tinier-tim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>How to simulate PSFs with Tiny Tim</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tiny_tim_tutorial.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="how-to-simulate-psfs-with-tiny-tim">
+<span id="tiny-tim-tutorial"></span><h1>How to simulate PSFs with Tiny Tim<a class="headerlink" href="#how-to-simulate-psfs-with-tiny-tim" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="#step-1"><span class="std std-ref">Step 1</span></a></p>
+<p><a class="reference internal" href="#step-2"><span class="std std-ref">Step 2</span></a></p>
+<p><a class="reference internal" href="#step-3"><span class="std std-ref">Step 3</span></a></p>
+<div class="section" id="step-1">
+<span id="id1"></span><h2>Step 1<a class="headerlink" href="#step-1" title="Permalink to this headline">¶</a></h2>
+<p>The following sequence of commands will generate a PSF with the requested conditions. First, choose the name of the PSF, e.g. <cite>psf0</cite></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$tiny1</span> psf0
+</pre></div>
+</div>
+<p>When prompted, choose the desired instrument, e.g. 23 for the WFC3/IR channel.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ <span class="m">23</span>
+</pre></div>
+</div>
+<p>For the position, we can choose the middle-ish pixel, i.e.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$550</span> <span class="m">550</span>
+</pre></div>
+</div>
+<p>Next is the filter passband corresponding to the instrument, e.g. F160W for the WFC3/IR channel we chose.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$f160w</span>
+</pre></div>
+</div>
+<p>We will then select the spectrum from which 13 wavelengths will be used to generate the PSF. Let’s select one from a list.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$1</span>
+</pre></div>
+</div>
+<p>A table of stars and their colors will be printed. Let’s choose AOV.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$7</span>
+</pre></div>
+</div>
+<p>For the PSF diameter, simply choose a reasonable diameter that will fit within your frame, e.g.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$5</span>
+</pre></div>
+</div>
+<p>I don’t know what the focus, secondary mirror despace parameter does. Let’s just not use it.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$0</span>
+</pre></div>
+</div>
+<p>Choose a rootname of PSF image files.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$test</span>
+</pre></div>
+</div>
+<p>The first step is complete!</p>
+</div>
+<div class="section" id="step-2">
+<span id="id2"></span><h2>Step 2<a class="headerlink" href="#step-2" title="Permalink to this headline">¶</a></h2>
+<p>The second step is simply calling <cite>tiny2</cite> followed by the PSF name.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$tiny2</span> psf0
+</pre></div>
+</div>
+<p><cite>tiny2</cite> will tell you that the intermediate PSF dimensions are 108 by 108, and proceed to compute the PSF at 13 wavelengths. It outputs an intermediate file called <cite>&lt;root name&gt;00_psf.fits</cite>, e.g. <cite>test00_psf.fits</cite> in our case, as well as a template optional parameter file required by <cite>tiny3</cite> called <cite>&lt;root name&gt;.tt3</cite>, e.g. <cite>test.tt3</cite>. The intermediate PSF is an undistorted PSF with the pixel size of 0.046241 arcsec.</p>
+</div>
+<div class="section" id="step-3">
+<span id="id3"></span><h2>Step 3<a class="headerlink" href="#step-3" title="Permalink to this headline">¶</a></h2>
+<p><cite>tiny3</cite> resamples and distorts the intermediate PSF from <cite>tiny2</cite>. If we run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$tiny3</span> psf0
+</pre></div>
+</div>
+<p>with no arguments, the output PSF, named <cite>&lt;root_name&gt;00.fits</cite> (<cite>test00.fits</cite> in our case), is 46 by 46 pixels. But say we want to apply a super-resolution (subsampling) factor of 4. Then run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">$tiny3</span> psf0 <span class="nv">sub</span><span class="o">=</span><span class="m">4</span>
+</pre></div>
+</div>
+<p>This will yield a PSF with 184 (46 times 4) pixels on each side.</p>
+<p>Now we are ready to rebin. See <a class="reference internal" href="rebinning_drizzling.html#rebinning-drizzling"><span class="std std-ref">How to rebin and drizzle PSFs</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rebinning_drizzling.html" class="btn btn-neutral float-right" title="How to rebin and drizzle PSFs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="tinier-tim" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Ji Won Park
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
