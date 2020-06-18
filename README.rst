@@ -3,7 +3,7 @@ tinier-tim
 ==========
 
 .. image:: https://readthedocs.org/projects/tinier-tim/badge/?version=latest
-    :target: https://tinier-tim.readthedocs.io/en/latest/?badge=latest
+    :target: https://tinier-tim.readthedocs.io/en/latest/
     :alt: Documentation Status
 
 Simulating drizzled HST PSFs.
@@ -43,7 +43,7 @@ When you run `tiny1` on terminal, you should see
 Tutorials
 =========
 
-See the `documentation <https://tinier-tim.readthedocs.io/en/latest/?badge=latest>`_ for tutorials.
+See the `documentation <https://tinier-tim.readthedocs.io/en/latest/>`_ for tutorials.
 
 Feedback
 ========
