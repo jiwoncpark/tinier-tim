@@ -8,5 +8,6 @@ Welcome to tinier-tim's documentation!
 
    tiny_tim_tutorial
    rebinning_drizzling
+   tinier_tim
 
 .. include:: ../README.rst
